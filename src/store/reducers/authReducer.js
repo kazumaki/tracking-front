@@ -1,4 +1,4 @@
-import { LOGIN_SUCESS, LOGIN_FAILURE, LOGIN_START } from "../actions/actionTypes";
+import { LOGIN_SUCESS, LOGIN_FAILURE, LOGIN_START, SIGNUP_START, SIGNUP_SUCCESS, SIGNUP_FAILURE } from "../actions/actionTypes";
 
 const defaultState = {
   token: null,
@@ -18,6 +18,25 @@ const authReducer = (state = defaultState, action) => {
         isLoading: false,
       }
     case LOGIN_FAILURE:
+      return {
+        ...state,
+        token: null,
+        response: action.response,
+        isLoading: false,
+      }
+
+    case SIGNUP_START:
+      return {...state, isLoading: true }
+
+    case SIGNUP_SUCCESS:
+      return {
+        ...state,
+        token: action.response.data.auth_token,
+        response: action.response,
+        isLoading: false,
+      }
+
+    case SIGNUP_FAILURE:
       return {
         ...state,
         token: null,
