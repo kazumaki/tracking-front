@@ -7,24 +7,26 @@ import {
   Redirect
 } from "react-router-dom";
 import Home from './Home';
-import Login from './Login';
+import Login from '../containers/Login';
 import Signup from './Signup';
+import { connect } from 'react-redux';
 
-const App = () => {
-  const [token, setToken] = useState('');
-  const [user, setUser] = useState({});
-
+const App = ({auth_token}) => {
   return (
     <Router>
       <Switch>
         <Route path="/signup" component={Signup} />
-        <Route path="/login" setToken={setToken} component={Login} />
-        <Route path="/" >
-          {token !== '' ? <Home /> : <Redirect to="/login" />}
-        </Route>
+        <Route path="/login" component={Login} />
+        <Route path="/" component={Home} />
       </Switch>
     </Router>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => (
+  {
+    auth_token: state.authReducer.token,
+  }
+)
+
+export default connect(mapStateToProps, null)(App);
