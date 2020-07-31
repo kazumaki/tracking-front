@@ -1,10 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect
+} from "react-router-dom";
+import Home from './Home';
+import Login from './Login';
+import Signup from './Signup';
 
-function App() {
+const App = () => {
+  const [token, setToken] = useState('');
+  const [user, setUser] = useState({});
+
   return (
-    <div className="App">
-
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/signup" component={Signup} />
+        <Route path="/login" setToken={setToken} component={Login} />
+        <Route path="/" >
+          {token !== '' ? <Home /> : <Redirect to="/login" />}
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
