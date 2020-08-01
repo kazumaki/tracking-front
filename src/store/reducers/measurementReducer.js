@@ -1,7 +1,7 @@
-import { FETCH_MEASUREMENTS_START, FETCH_MEASUREMENTS_SUCCESS, FETCH_MEASUREMENTS_FAILURE } from "../actions/actionTypes";
+import { FETCH_MEASUREMENTS_START, FETCH_MEASUREMENTS_SUCCESS, FETCH_MEASUREMENTS_FAILURE, POST_MEASUREMENT_SUCCESS } from "../actions/actionTypes";
 
 const defaultState = {
-  measurements: [],
+  measurements: {},
   response: {},
   lastAction: '',
   isLoading: false,
@@ -19,9 +19,14 @@ const measurementReducer = (state = defaultState, action) => {
       }
 
     case FETCH_MEASUREMENTS_SUCCESS:
+      const measurements = action.response.data.reduce((obj, measurement) => {
+        obj[measurement.id] = measurement;
+        return obj;
+      }, {})
+
       return {
         ...state,
-        measurements: [...action.response.data],
+        measurements,
         response: action.response,
         isLoading: false,
         isLoaded: true,
@@ -31,11 +36,22 @@ const measurementReducer = (state = defaultState, action) => {
     case FETCH_MEASUREMENTS_FAILURE:
       return {
         ...state,
-        measurements: [],
+        measurements: {},
         response: action.response,
         isLoading: false,
         isLoaded: false,
         lastAction: action.type,
+      }
+
+    case POST_MEASUREMENT_SUCCESS:
+      const measurement = action.response.data;
+      const id = measurement.id;
+      return {
+        ...state,
+        measurements: {
+          ...state.measurements,
+          [id]: measurement
+        }
       }
 
     default:
