@@ -1,16 +1,16 @@
-import React, {useState} from 'react'
-import { signup } from '../store/actions/authActions';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { signup } from '../store/actions/authActions';
 import SignupForm from '../components/SignupForm';
 import RequireNoAuth from './RequireNoAuth';
 
-const Signup = ({signup}) => {
+const Signup = ({ signup }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password_confirmation, setPasswordConfirmation] = useState('');
 
-  const onSubmitSignup = (e) => {
+  const onSubmitSignup = e => {
     e.preventDefault();
 
     const signupData = {
@@ -18,28 +18,29 @@ const Signup = ({signup}) => {
       email,
       password,
       password_confirmation,
-    }
+    };
 
     signup(signupData);
-  }
+  };
 
   return (
     <div>
       <RequireNoAuth />
       <SignupForm
         onSubmitSignup={onSubmitSignup}
-        setName={setName} setEmail={setEmail}
+        setName={setName}
+        setEmail={setEmail}
         setPassword={setPassword}
         setPasswordConfirmation={setPasswordConfirmation}
       />
     </div>
-  )
-}
+  );
+};
 
-const mapDispatchToProps = (dispatch) => (
+const mapDispatchToProps = dispatch => (
   {
-    signup: (signupData) => dispatch(signup(signupData))
+    signup: signupData => dispatch(signup(signupData)),
   }
-)
+);
 
 export default connect(null, mapDispatchToProps)(Signup);

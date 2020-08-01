@@ -1,19 +1,19 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../store/actions/authActions';
 import RequireNoAuth from './RequireNoAuth';
 import LoginForm from '../components/LoginForm';
 
-const Login = ({login, token, response}) => {
+const Login = ({ login, token, response }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const onSubmitLogin = (event) => {
+  const onSubmitLogin = event => {
     event.preventDefault();
-    const loginData = {email, password}
+    const loginData = { email, password };
     login(loginData);
-  }
+  };
 
   return (
     <div>
@@ -21,16 +21,16 @@ const Login = ({login, token, response}) => {
       <LoginForm onSubmitLogin={onSubmitLogin} setEmail={setEmail} setPassword={setPassword} />
       { (!token && response) && response.data.message }
     </div>
-  )
+  );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  login: (loginData) => dispatch(login(loginData))
-})
+const mapDispatchToProps = dispatch => ({
+  login: loginData => dispatch(login(loginData)),
+});
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   token: state.authReducer.token,
   response: state.authReducer.response,
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
