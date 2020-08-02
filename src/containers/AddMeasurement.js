@@ -4,10 +4,10 @@ import RequireAuth from './RequireAuth';
 import { postMeasurement } from '../store/actions/measurementActions';
 import { connect } from 'react-redux';
 
-const AddMeasurement = ({postMeasurement, token, measurements}) => {
+const AddMeasurement = ({postMeasurement, token, measurementTypes}) => {
   const [measurementType, setMeasurementType] = useState('');
-  const [value, setValue] = useState(0);
-  console.log(measurements);
+  const [value, setValue] = useState(1);
+
   const onSubmitForm = (e) => {
     e.preventDefault();
 
@@ -21,7 +21,7 @@ const AddMeasurement = ({postMeasurement, token, measurements}) => {
   return (
     <div>
       <RequireAuth />
-      <MeasurementForm setMeasurementType={setMeasurementType} setValue={setValue} onSubmitForm={onSubmitForm} />
+      <MeasurementForm setMeasurementType={setMeasurementType} setValue={setValue} onSubmitForm={onSubmitForm} measurementTypes={measurementTypes}/>
     </div>
   )
 }
@@ -35,7 +35,7 @@ const mapDispatchToProps = dispatch => (
 const mapStateToProps = state => (
   {
     token: state.authReducer.token,
-    measurements: state.measurementReducer.measurements,
+    measurementTypes: state.measurementTypeReducer.measurementTypes,
   }
 )
 
