@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SignupForm = (props) => {
+const SignupForm = props => {
   const {
     onSubmitSignup,
     name,
@@ -11,9 +11,9 @@ const SignupForm = (props) => {
     setPassword,
     passwordConfirmation,
     setPasswordConfirmation,
-  } = props
+  } = props;
 
-  return  (
+  return (
     <form onSubmit={onSubmitSignup}>
       <input type="text" name="name" autoComplete="name" onChange={e => setName(e.target.value)} value={name} />
       <input type="email" name="email" autoComplete="email" onChange={e => setEmail(e.target.value)} value={email} />
@@ -21,8 +21,7 @@ const SignupForm = (props) => {
       <input type="password" name="password_confirmation" autoComplete="current-password" onChange={e => setPasswordConfirmation(e.target.value)} value={passwordConfirmation} />
       <input type="submit" />
     </form>
-  )
-
+  );
 };
 
 export default SignupForm;

@@ -1,65 +1,67 @@
 const axios = require('axios');
-const { FETCH_MEASUREMENTS_START, FETCH_MEASUREMENTS_SUCCESS, FETCH_MEASUREMENTS_FAILURE, POST_MEASUREMENT_START, POST_MEASUREMENT_SUCCESS, POST_MEASUREMENT_FAILURE, DELETE_MEASUREMENT_START } = require('./actionTypes');
+const {
+  FETCH_MEASUREMENTS_START, FETCH_MEASUREMENTS_SUCCESS, FETCH_MEASUREMENTS_FAILURE, POST_MEASUREMENT_START, POST_MEASUREMENT_SUCCESS, POST_MEASUREMENT_FAILURE, DELETE_MEASUREMENT_START,
+} = require('./actionTypes');
 const { default: config } = require('../../lib/config');
 
-const fetchMeasurements = (token) => (
+const fetchMeasurements = token => (
   dispatch => {
     dispatch(fetchMeasurementsStart());
     axios.get(`${config.API_BASE_URL}/measurements`, {
       headers: {
-        'Authorization': token,
-      }
+        Authorization: token,
+      },
     })
-    .then(response => dispatch(fetchMeasurementsSuccess(response)))
-    .catch(error => dispatch(fetchMeasurementsFailure(error.response)))
+      .then(response => dispatch(fetchMeasurementsSuccess(response)))
+      .catch(error => dispatch(fetchMeasurementsFailure(error.response)));
   }
-)
+);
 
 const postMeasurement = (measurement, token) => (
   dispatch => {
     dispatch(postMeasurementStart());
     axios.post(`${config.API_BASE_URL}/measurements`, measurement, {
       headers: {
-        'Authorization': token,
-      }
+        Authorization: token,
+      },
     })
-    .then(response => dispatch(postMeasurementSuccess(response)))
-    .catch(error => dispatch(postMeasurementFailure(error.response)))
+      .then(response => dispatch(postMeasurementSuccess(response)))
+      .catch(error => dispatch(postMeasurementFailure(error.response)));
   }
-)
+);
 
-const fetchMeasurementsStart = () => ({ type: FETCH_MEASUREMENTS_START })
+const fetchMeasurementsStart = () => ({ type: FETCH_MEASUREMENTS_START });
 
 const fetchMeasurementsSuccess = response => (
   {
     type: FETCH_MEASUREMENTS_SUCCESS,
-    response
+    response,
   }
-)
+);
 
 const fetchMeasurementsFailure = response => (
   {
     type: FETCH_MEASUREMENTS_FAILURE,
-    response
+    response,
   }
-)
+);
 
-const postMeasurementStart = () => ({type: POST_MEASUREMENT_START});
+const postMeasurementStart = () => ({ type: POST_MEASUREMENT_START });
 
 const postMeasurementSuccess = response => (
   {
     type: POST_MEASUREMENT_SUCCESS,
-    response
+    response,
   }
-)
+);
 
 const postMeasurementFailure = response => (
   {
     type: POST_MEASUREMENT_FAILURE,
-    response
+    response,
   }
-)
+);
 
-const deleteMeasurementStart = () => ({type: DELETE_MEASUREMENT_START});
+const deleteMeasurementStart = () => ({ type: DELETE_MEASUREMENT_START });
 
-export { fetchMeasurements, postMeasurement }
+export { fetchMeasurements, postMeasurement };
