@@ -1,5 +1,5 @@
 import {
-  FETCH_MEASUREMENTS_START, FETCH_MEASUREMENTS_SUCCESS, FETCH_MEASUREMENTS_FAILURE, POST_MEASUREMENT_SUCCESS, POST_MEASUREMENT_START, POST_MEASUREMENT_FAILURE, DELETE_MEASUREMENT_START, DELETE_MEASUREMENT_SUCCESS,
+  FETCH_MEASUREMENTS_START, FETCH_MEASUREMENTS_SUCCESS, FETCH_MEASUREMENTS_FAILURE, POST_MEASUREMENT_SUCCESS, POST_MEASUREMENT_START, POST_MEASUREMENT_FAILURE, DELETE_MEASUREMENT_START, DELETE_MEASUREMENT_SUCCESS, DELETE_MEASUREMENT_FAILURE,
 } from '../actions/actionTypes';
 
 const defaultState = {
@@ -23,6 +23,7 @@ const measurementReducer = (state = defaultState, action) => {
     case FETCH_MEASUREMENTS_SUCCESS: {
       /* eslint-disable no-param-reassign */
       const measurements = action.response.data.reduce((obj, measurement) => {
+        measurement.created_at = new Date(measurement.created_at);
         obj[measurement.id] = measurement;
         return obj;
       }, {});
@@ -58,6 +59,7 @@ const measurementReducer = (state = defaultState, action) => {
     case POST_MEASUREMENT_SUCCESS: {
       const measurement = action.response.data;
       const { id } = measurement;
+      measurement.created_at = new Date(measurement.created_at);
       return {
         ...state,
         isLoading: true,
@@ -98,6 +100,14 @@ const measurementReducer = (state = defaultState, action) => {
         measurements: newMeasurements,
       };
     }
+
+    case DELETE_MEASUREMENT_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        response: action.response,
+        lastAction: action.type,
+      };
 
     default:
       return state;

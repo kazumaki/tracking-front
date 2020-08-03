@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import RequireAuth from '../containers/RequireAuth';
 import { fetchMeasurements, deleteMeasurement } from '../store/actions/measurementActions';
 import getMeasurementTypes from '../store/actions/measurementTypeActions';
-import MeasurementList from './MeasurementList';
 import AddMeasurement from '../containers/AddMeasurement';
+import MeasurementList from '../containers/MeasurementList';
+import MeasurementsFilter from '../containers/MeasurementsFilter';
+import DateSelector from '../containers/DateSelector';
 
 const Home = ({
   fetchMeasurements, getMeasurementTypes, measurementTypes, measurements, response, lastAction, token, deleteMeasurement,
@@ -21,16 +23,11 @@ const Home = ({
       getMeasurementTypes(token);
     }
   }, [token, getMeasurementTypes]);
-
   return (
     <div>
       <RequireAuth />
-      <MeasurementList
-        measurements={measurements}
-        measurementTypes={measurementTypes}
-        deleteMeasurement={deleteMeasurement}
-        token={token}
-      />
+      <DateSelector />
+      <MeasurementsFilter />
       <AddMeasurement />
     </div>
   );
