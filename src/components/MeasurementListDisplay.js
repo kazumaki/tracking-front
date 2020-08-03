@@ -5,11 +5,11 @@ const MeasurementListDisplay = ({measurements, measurementType}) => {
   return (
     <div>
       {measurementType && measurementType.name}
-      {Object.keys(measurements).map(date => {
+      {Object.keys(measurements).reverse().map(date => {
         return (
           <ul key={date}>
             <h1>{date}</h1>
-            {measurements[date].map(measurement => {
+            {measurements[date].reverse().map(measurement => {
               return (
                 <li key={measurement.id}>{`${measurement.value} ${measurementType.unit}`}</li>
               );
