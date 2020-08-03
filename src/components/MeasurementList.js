@@ -1,12 +1,18 @@
 import React from 'react';
 
-const MeasurementList = ({ measurements, measurementTypes }) => (
+const MeasurementList = ({
+  measurements, measurementTypes, deleteMeasurement, token,
+}) => (
   <ul>
     {Object.keys(measurements).map(id => {
       const measurement = measurements[id];
       const measurementType = measurementTypes[measurement.measurement_type_id];
-      console.log(measurementType);
-      return <li key={id}>{`Type: ${measurementType.name} Value: ${measurement.value}`}</li>;
+      return (
+        <li key={id}>
+          {`Type: ${measurementType.name} Value: ${measurement.value}`}
+          <button type="button" onClick={() => deleteMeasurement(measurement, token)}>Delete</button>
+        </li>
+      );
     })}
   </ul>
 );

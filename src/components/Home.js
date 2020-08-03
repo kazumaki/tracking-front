@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import RequireAuth from '../containers/RequireAuth';
-import { fetchMeasurements } from '../store/actions/measurementActions';
+import { fetchMeasurements, deleteMeasurement } from '../store/actions/measurementActions';
 import getMeasurementTypes from '../store/actions/measurementTypeActions';
 import MeasurementList from './MeasurementList';
 import AddMeasurement from '../containers/AddMeasurement';
 
 const Home = ({
-  fetchMeasurements, getMeasurementTypes, measurementTypes, measurements, response, lastAction, token,
+  fetchMeasurements, getMeasurementTypes, measurementTypes, measurements, response, lastAction, token, deleteMeasurement,
 }) => {
   useEffect(() => {
     if ((Object.keys(measurementTypes).length > 0) && token) {
@@ -25,7 +25,12 @@ const Home = ({
   return (
     <div>
       <RequireAuth />
-      <MeasurementList measurements={measurements} measurementTypes={measurementTypes} />
+      <MeasurementList
+        measurements={measurements}
+        measurementTypes={measurementTypes}
+        deleteMeasurement={deleteMeasurement}
+        token={token}
+      />
       <AddMeasurement />
     </div>
   );
@@ -35,6 +40,7 @@ const mapDispatchToProps = dispatch => (
   {
     fetchMeasurements: token => dispatch(fetchMeasurements(token)),
     getMeasurementTypes: token => dispatch(getMeasurementTypes(token)),
+    deleteMeasurement: (measurement, token) => dispatch(deleteMeasurement(measurement, token)),
   }
 );
 

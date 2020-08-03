@@ -1,5 +1,5 @@
 import {
-  FETCH_MEASUREMENTS_START, FETCH_MEASUREMENTS_SUCCESS, FETCH_MEASUREMENTS_FAILURE, POST_MEASUREMENT_SUCCESS, POST_MEASUREMENT_START, POST_MEASUREMENT_FAILURE,
+  FETCH_MEASUREMENTS_START, FETCH_MEASUREMENTS_SUCCESS, FETCH_MEASUREMENTS_FAILURE, POST_MEASUREMENT_SUCCESS, POST_MEASUREMENT_START, POST_MEASUREMENT_FAILURE, DELETE_MEASUREMENT_START, DELETE_MEASUREMENT_SUCCESS,
 } from '../actions/actionTypes';
 
 const defaultState = {
@@ -20,12 +20,13 @@ const measurementReducer = (state = defaultState, action) => {
         lastAction: action.type,
       };
 
-    case FETCH_MEASUREMENTS_SUCCESS:
+    case FETCH_MEASUREMENTS_SUCCESS: {
+      /* eslint-disable no-param-reassign */
       const measurements = action.response.data.reduce((obj, measurement) => {
         obj[measurement.id] = measurement;
         return obj;
       }, {});
-
+      /* eslint-enable no-param-reassign */
       return {
         ...state,
         measurements,
@@ -34,6 +35,7 @@ const measurementReducer = (state = defaultState, action) => {
         isLoaded: true,
         lastAction: action.type,
       };
+    }
 
     case FETCH_MEASUREMENTS_FAILURE:
       return {
@@ -53,7 +55,7 @@ const measurementReducer = (state = defaultState, action) => {
         lastAction: action.type,
       };
 
-    case POST_MEASUREMENT_SUCCESS:
+    case POST_MEASUREMENT_SUCCESS: {
       const measurement = action.response.data;
       const { id } = measurement;
       return {
@@ -66,6 +68,7 @@ const measurementReducer = (state = defaultState, action) => {
           [id]: measurement,
         },
       };
+    }
 
     case POST_MEASUREMENT_FAILURE:
       return {
@@ -74,6 +77,27 @@ const measurementReducer = (state = defaultState, action) => {
         response: action.response,
         lastAction: action.type,
       };
+
+    case DELETE_MEASUREMENT_START:
+      return {
+        ...state,
+        isLoading: true,
+        isLoaded: false,
+        lastAction: action.type,
+      };
+
+    case DELETE_MEASUREMENT_SUCCESS: {
+      const newMeasurements = { ...state.measurements };
+      delete newMeasurements[action.measurement.id];
+
+      return {
+        ...state,
+        isLoading: false,
+        response: action.response,
+        lastAction: action.type,
+        measurements: newMeasurements,
+      };
+    }
 
     default:
       return state;
