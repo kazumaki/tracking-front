@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Measurements = ({measurementTypes, measurements}) => {
   return (
@@ -8,7 +9,11 @@ const Measurements = ({measurementTypes, measurements}) => {
 
         return (
           <div key={typeId}>
-            <div>{measurementType.name}</div>
+            <div>
+              <Link to={`/measurements/${typeId}`}>
+                {measurementType.name}
+              </Link>
+            </div>
             <div>{(measurements[typeId] && `${measurements[typeId].value} ${measurementType.unit}`) || 'N/A'}</div>
           </div>
         );

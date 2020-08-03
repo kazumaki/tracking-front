@@ -13,6 +13,20 @@ const groupMeasurementsByType = measurements => (
   }, {})
 );
 
+const groupMeasurementsByDate = measurements => (
+  Object.keys(measurements).reduce((obj, measurementID) => {
+    const measurement = measurements[measurementID];
+    const date = measurement.created_at.toDateString();
+    /* eslint-disable no-param-reassign */
+    if (!obj[date]) {
+      obj[date] = [];
+    }
+    /* eslint-enable no-param-reassign */
+    obj[date].push(measurement);
+    return obj;
+  }, {})
+);
+
 const filterMeasurementByDate = (measurements, date) => {
   const groupedMeasurements = groupMeasurementsByType(measurements);
   return Object.keys(groupedMeasurements).reduce((obj, typeId) => {
@@ -24,4 +38,17 @@ const filterMeasurementByDate = (measurements, date) => {
   }, {});
 };
 
-export { filterMeasurementByDate, groupMeasurementsByType };
+const filterMeasurementByType = (measurements, measurementType) => (
+  Object.keys(measurements).reduce((obj, measurementID) => {
+    const measurement = measurements[measurementID];
+    if (measurement.measurement_type_id === Number(measurementType)) {
+      /* eslint-disable no-param-reassign */
+      obj[measurementID] = measurement;
+      /* eslint-enable no-param-reassign */
+    }
+
+    return obj;
+  }, {})
+);
+
+export { filterMeasurementByDate, filterMeasurementByType, groupMeasurementsByType, groupMeasurementsByDate };

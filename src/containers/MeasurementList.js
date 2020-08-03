@@ -1,39 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import MeasurementListDisplay from '../components/MeasurementListDisplay';
+import { groupMeasurementsByDate, filterMeasurementByType } from '../lib/measurement';
+import RequireAuth from './RequireAuth';
 
-const MeasurementList = ({ measurements, measurementTypes }) => {
+const MeasurementList = props => {
+  const { measurements, measurementTypes } = props;
+  const { match: { params } } = props;
+  console.log(measurements);
+  const filteredMeasurements = filterMeasurementByType(measurements, params.measurementTypeId);
+  console.log(filteredMeasurements);
+  const groupedMeasurements = groupMeasurementsByDate(filteredMeasurements);
+  const measurementType = measurementTypes[params.measurementTypeId];
   return (
-    <ul>
-      {
-        console.log(measurementTypes)}{
-        Object.keys(measurements).map(id => {
-          const measurementType = measurementTypes[id];
-          return <li key={id}>{`type: ${measurementType.name} last measure: ${measurements[id].slice(-1).pop().value}`}</li>;
-        })
-      }
-    </ul>
+    <div>
+      <RequireAuth />
+      <MeasurementListDisplay
+        measurements={groupedMeasurements}
+        measurementType={measurementType}
+      />
+    </div>
   )
 };
 
-const groupMeasurements = measurements => (
-  Object.keys(measurements).reduce((obj, measurementID) => {
-    const measurement = measurements[measurementID];
-    const measurementType = measurement.measurement_type_id;
-    /* eslint-disable no-param-reassign */
-    if (!obj[measurementType]) {
-      obj[measurementType] = [];
-    }
-    /* eslint-enable no-param-reassign */
-    obj[measurementType].push(measurement);
-
-    return obj;
-  }, {})
-);
-
 const mapStateToProps = state => (
   {
-    measurements: groupMeasurements(state.measurementReducer.measurements),
     measurementTypes: state.measurementTypeReducer.measurementTypes,
+    measurements: state.measurementReducer.measurements,
   }
 );
 
