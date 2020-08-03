@@ -28,9 +28,13 @@ const Signup = ({ signup }) => {
       <RequireNoAuth />
       <SignupForm
         onSubmitSignup={onSubmitSignup}
+        name={name}
         setName={setName}
+        email={email}
         setEmail={setEmail}
+        password={password}
         setPassword={setPassword}
+        passwordConfirmation={password_confirmation}
         setPasswordConfirmation={setPasswordConfirmation}
       />
     </div>

@@ -4,20 +4,27 @@ import { fetchMeasurements } from '../store/actions/measurementActions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import getMeasurementTypes from '../store/actions/measurementTypeActions';
+import MeasurementList from './MeasurementList';
+import AddMeasurement from '../containers/AddMeasurement';
 
 const Home = ({fetchMeasurements, getMeasurementTypes, measurementTypes, measurements, response, lastAction, token}) => {
   useEffect(() => {
-    if (token) { 
+    if((Object.keys(measurementTypes).length > 0) && token) {
       fetchMeasurements(token);
+    }
+  }, [fetchMeasurements, measurementTypes, token])
+
+  useEffect(() => {
+    if (token) {
       getMeasurementTypes(token);
     }
-  }, [token, fetchMeasurements, getMeasurementTypes])
-  console.log(measurementTypes);
+  }, [token, getMeasurementTypes])
+
   return (
     <div>
       <RequireAuth />
-      hehe
-      <Link to='/add-measurement'> Add Measurement </Link>
+      <MeasurementList measurements={measurements} measurementTypes={measurementTypes} />
+      <AddMeasurement />
     </div>
   )
 

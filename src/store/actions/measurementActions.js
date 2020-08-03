@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { FETCH_MEASUREMENTS_START, FETCH_MEASUREMENTS_SUCCESS, FETCH_MEASUREMENTS_FAILURE, POST_MEASUREMENT_START, POST_MEASUREMENT_SUCCESS, POST_MEASUREMENT_FAILURE } = require('./actionTypes');
+const { FETCH_MEASUREMENTS_START, FETCH_MEASUREMENTS_SUCCESS, FETCH_MEASUREMENTS_FAILURE, POST_MEASUREMENT_START, POST_MEASUREMENT_SUCCESS, POST_MEASUREMENT_FAILURE, DELETE_MEASUREMENT_START } = require('./actionTypes');
 const { default: config } = require('../../lib/config');
 
 const fetchMeasurements = (token) => (
@@ -44,7 +44,7 @@ const fetchMeasurementsFailure = response => (
   }
 )
 
-const postMeasurementStart = () => ({type: POST_MEASUREMENT_START})
+const postMeasurementStart = () => ({type: POST_MEASUREMENT_START});
 
 const postMeasurementSuccess = response => (
   {
@@ -59,5 +59,7 @@ const postMeasurementFailure = response => (
     response
   }
 )
+
+const deleteMeasurementStart = () => ({type: DELETE_MEASUREMENT_START});
 
 export { fetchMeasurements, postMeasurement }

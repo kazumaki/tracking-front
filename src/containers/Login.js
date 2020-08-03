@@ -18,7 +18,13 @@ const Login = ({ login, token, response }) => {
   return (
     <div>
       <RequireNoAuth />
-      <LoginForm onSubmitLogin={onSubmitLogin} setEmail={setEmail} setPassword={setPassword} />
+      <LoginForm 
+        onSubmitLogin={onSubmitLogin}
+        email={email}
+        setEmail={setEmail}
+        password={password}
+        setPassword={setPassword}
+      />
       { (!token && response) && response.data.message }
     </div>
   );

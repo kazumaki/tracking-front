@@ -5,7 +5,7 @@ import { postMeasurement } from '../store/actions/measurementActions';
 import { connect } from 'react-redux';
 
 const AddMeasurement = ({postMeasurement, token, measurementTypes}) => {
-  const [measurementType, setMeasurementType] = useState('');
+  const [measurementType, setMeasurementType] = useState(1);
   const [value, setValue] = useState(1);
 
   const onSubmitForm = (e) => {
@@ -21,7 +21,14 @@ const AddMeasurement = ({postMeasurement, token, measurementTypes}) => {
   return (
     <div>
       <RequireAuth />
-      <MeasurementForm setMeasurementType={setMeasurementType} setValue={setValue} onSubmitForm={onSubmitForm} measurementTypes={measurementTypes}/>
+      <MeasurementForm 
+        setMeasurementType={setMeasurementType}
+        value={value}
+        setValue={setValue}
+        measurementType={measurementType}
+        onSubmitForm={onSubmitForm}
+        measurementTypes={measurementTypes}
+      />
     </div>
   )
 }

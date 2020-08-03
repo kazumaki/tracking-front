@@ -1,9 +1,10 @@
 import React, {useState} from 'react'
 
-const MeasurementForm = ({onSubmitForm, setMeasurementType, setValue, measurementTypes}) => {
+const MeasurementForm = props => {
+  const {onSubmitForm, setMeasurementType, setValue, value, measurementType, measurementTypes} = props
   return (
     <form onSubmit={onSubmitForm}>
-      <select onChange={setMeasurementType}>
+      <select onChange={(e) => setMeasurementType(e.target.value)} value={measurementType}>
       {
         Object.entries(measurementTypes).map(measurementType => 
           {
@@ -13,7 +14,7 @@ const MeasurementForm = ({onSubmitForm, setMeasurementType, setValue, measuremen
         )
       }
       </select>
-      <input type='number' onChange={(e) => setValue(e.target.value)} />
+      <input type='number' onChange={(e) => setValue(e.target.value)} value={value} />
       <input type='submit' />
     </form>
   )
