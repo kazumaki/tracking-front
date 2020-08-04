@@ -1,21 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styles from '../styles/Measurements.module.scss';
+import MeasurementBox from './MeasurementBox';
 
 const Measurements = ({measurementTypes, measurements}) => {
   return (
-    <div>
+    <div className={styles.mainContainer}>
       {Object.keys(measurementTypes).map(typeId => {
         const measurementType = measurementTypes[typeId];
 
         return (
-          <div key={typeId}>
-            <div>
-              <Link to={`/measurements/${typeId}`}>
-                {measurementType.name}
-              </Link>
-            </div>
-            <div>{(measurements[typeId] && `${measurements[typeId].value} ${measurementType.unit}`) || 'N/A'}</div>
-          </div>
+          <MeasurementBox
+            key={typeId}
+            measurement={measurements[typeId]}
+            measurementType={measurementType}
+          />
         );
       })}
     </div>

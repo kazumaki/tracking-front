@@ -6,6 +6,8 @@ import MeasurementsFilter from './MeasurementsFilter';
 import AddMeasurement from './AddMeasurement';
 import { fetchMeasurements } from '../store/actions/measurementActions';
 import getMeasurementTypes from '../store/actions/measurementTypeActions';
+import Header from '../components/Header';
+import styles from '../styles/MainApp.module.scss';
 
 const MainApp = props => {
   const { measurementTypes, getMeasurementTypes, fetchMeasurements, token } = props;
@@ -26,10 +28,13 @@ const MainApp = props => {
   return (
     <div>
       <RequireAuth />
-      <DateSelector />
-      <MeasurementsFilter />
-      { showAddMeasurement && <AddMeasurement setShowAddMeasurement={setShowAddMeasurement} /> }
-      { !showAddMeasurement && <button type="button" onClick={() => setShowAddMeasurement(true)}>Add Measurement</button>}
+      <Header />
+      <div className={styles.mainContainer}>
+        { showAddMeasurement && <AddMeasurement setShowAddMeasurement={setShowAddMeasurement} /> }
+        { !showAddMeasurement && <button type="button" onClick={() => setShowAddMeasurement(true)}>Add Measurement</button>}
+        <DateSelector />
+        <MeasurementsFilter />
+      </div>
     </div>
   );
 };

@@ -7,6 +7,8 @@ import {
   Redirect,
 } from 'react-router-dom';
 
+import styles from '../styles/App.module.scss'
+
 import Home from './Home';
 import Login from '../containers/Login';
 import Signup from '../containers/Signup';
