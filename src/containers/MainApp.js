@@ -31,7 +31,9 @@ const MainApp = props => {
       <Header />
       <div className={styles.mainContainer}>
         { showAddMeasurement && <AddMeasurement setShowAddMeasurement={setShowAddMeasurement} /> }
-        { !showAddMeasurement && <button type="button" onClick={() => setShowAddMeasurement(true)}>Add Measurement</button>}
+        <div className={styles.addMeasurementButtonBox}>
+          <button type="button" className={styles.addMeasurementButton} onClick={() => setShowAddMeasurement(true)}>Add Measurement</button>
+        </div>
         <DateSelector />
         <MeasurementsFilter />
       </div>
