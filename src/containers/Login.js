@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../store/actions/authActions';
 import RequireNoAuth from './RequireNoAuth';
@@ -25,6 +25,7 @@ const Login = ({ login, token, response }) => {
         password={password}
         setPassword={setPassword}
       />
+      <Link to="/signup">Signup</Link>
       { (!token && response) && response.data.message }
     </div>
   );
