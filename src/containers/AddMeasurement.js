@@ -8,7 +8,7 @@ const AddMeasurement = ({
   postMeasurement, token, measurementTypes, setShowAddMeasurement,
 }) => {
   const [measurementType, setMeasurementType] = useState(1);
-  const [value, setValue] = useState(1);
+  const [value, setValue] = useState(0);
 
   const onSubmitForm = e => {
     e.preventDefault();
@@ -22,6 +22,10 @@ const AddMeasurement = ({
     setShowAddMeasurement(false);
   };
 
+  const onClickCloseButton = e => {
+    setShowAddMeasurement(false);
+  }
+
   return (
     <div>
       <RequireAuth />
@@ -32,6 +36,7 @@ const AddMeasurement = ({
         measurementType={measurementType}
         onSubmitForm={onSubmitForm}
         measurementTypes={measurementTypes}
+        onClickCloseButton={onClickCloseButton}
       />
     </div>
   );
