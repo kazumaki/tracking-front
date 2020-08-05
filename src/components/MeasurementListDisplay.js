@@ -1,13 +1,19 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import MeasurementListBox from '../containers/MeasurementListBox';
 import styles from '../styles/MeasurementListDisplay.module.scss';
 
-const MeasurementListDisplay = ({ measurements, measurementType }) => {
+const MeasurementListDisplay = ({ measurements, measurementType, history }) => {
   const measurementKeys = Object.keys(measurements).reverse();
-  console.log(measurements);
+
+  const onClickBackButton = () => {
+    history.push('/');
+  };
+
   let currentDate = '';
   return (
     <div className={styles.mainContainer}>
+      <button className={styles.backButton} type="button" onClick={onClickBackButton}><i aria-label="Previous day" className="fas fa-lg fa-chevron-left" /></button>
       {measurementKeys.map((key, index) => {
         const currentMeasurement = measurements[key];
         const nextKey = measurementKeys[index + 1];
@@ -24,7 +30,7 @@ const MeasurementListDisplay = ({ measurements, measurementType }) => {
           currentDate = currentMeasurement.created_at.toDateString();
           return (
             <div>
-              <div>{currentDate}</div>
+              <div className={styles.date}>{currentDate}</div>
               {renderComponent}
             </div>
           );
@@ -38,4 +44,4 @@ const MeasurementListDisplay = ({ measurements, measurementType }) => {
   );
 };
 
-export default MeasurementListDisplay;
+export default withRouter(MeasurementListDisplay);
