@@ -1,18 +1,38 @@
 import React from 'react';
-import MeasurementListBox from './MeasurementListBox';
+import MeasurementListBox from '../containers/MeasurementListBox';
+import styles from '../styles/MeasurementListDisplay.module.scss';
 
 const MeasurementListDisplay = ({ measurements, measurementType }) => {
   const measurementKeys = Object.keys(measurements).reverse();
-  console.log(measurementKeys, measurements);
+  console.log(measurements);
+  let currentDate = '';
   return (
-    <div>
+    <div className={styles.mainContainer}>
       {measurementKeys.map((key, index) => {
         const currentMeasurement = measurements[key];
         const nextKey = measurementKeys[index + 1];
         const nextMeasurement = measurements[nextKey];
+        const renderComponent = (
+          <MeasurementListBox
+            key={key} measurement={currentMeasurement}
+            measurementType={measurementType}
+            nextMeasurement={nextMeasurement}
+          />
+        );
+
+        if (currentDate != currentMeasurement.created_at.toDateString()) {
+          currentDate = currentMeasurement.created_at.toDateString();
+          return (
+            <div>
+              <div>{currentDate}</div>
+              {renderComponent}
+            </div>
+          );
+        }
+
         return (
-          <MeasurementListBox measurement={currentMeasurement} measurementType={measurementType} nextMeasurement={nextMeasurement} />
-        )
+          renderComponent
+        );
       })}
     </div>
   );

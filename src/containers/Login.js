@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../store/actions/authActions';
+import styles from '../styles/Login.module.scss';
 import RequireNoAuth from './RequireNoAuth';
 import LoginForm from '../components/LoginForm';
+import Header from '../components/Header';
 
 const Login = ({ login, token, response }) => {
   const [email, setEmail] = useState('');
@@ -18,14 +20,17 @@ const Login = ({ login, token, response }) => {
   return (
     <div>
       <RequireNoAuth />
-      <LoginForm
-        onSubmitLogin={onSubmitLogin}
-        email={email}
-        setEmail={setEmail}
-        password={password}
-        setPassword={setPassword}
-      />
-      <Link to="/signup">Signup</Link>
+      <Header />
+      <div className={styles.mainContainer}>
+        <LoginForm
+          onSubmitLogin={onSubmitLogin}
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+        />
+        <Link to="/signup">Signup</Link>
+      </div>
       { (!token && response) && response.data.message }
     </div>
   );

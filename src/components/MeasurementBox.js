@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import styles from '../styles/MeasurementBox.module.scss';
 import MeasurementData from './MeasurementData';
+import { deleteMeasurement } from '../store/actions/measurementActions';
 
 const MeasurementBox = ({ measurement, measurementType, history }) => {
   const handleOnClick = () => {
@@ -15,5 +16,6 @@ const MeasurementBox = ({ measurement, measurementType, history }) => {
     </div>
   );
 };
+
 
 export default withRouter(MeasurementBox);

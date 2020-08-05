@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../styles/LoginForm.module.scss';
 
 const LoginForm = props => {
   const {
@@ -7,9 +8,15 @@ const LoginForm = props => {
 
   return (
     <form onSubmit={onSubmitLogin}>
-      <input type="email" name="email" autoComplete="email" onChange={e => setEmail(e.target.value)} value={email} />
-      <input type="password" name="password" autoComplete="current-password" onChange={e => setPassword(e.target.value)} value={password} />
-      <input type="submit" />
+      <label htmlFor="email">
+        <div>Email</div>
+        <input type="email" id="email" name="email" autoComplete="email" onChange={e => setEmail(e.target.value)} value={email} />
+      </label>
+      <label htmlFor="password">
+        <div>Password</div>
+        <input type="password" id="password" name="password" autoComplete="current-password" onChange={e => setPassword(e.target.value)} value={password} />
+      </label>
+      <input type="submit" value="Login" />
     </form>
   );
 };
