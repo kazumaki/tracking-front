@@ -9,12 +9,6 @@
   min-height: 100vh;
 }
 
-.addMeasurementButtonBox {
-  background-color: white;
-  width: 80%;
-  padding: 5px;
-}
-
 .addMeasurementButton {
   background-color: #8ec373;
   width: 100%;
@@ -22,4 +16,12 @@
   border: none;
   outline: none;
   padding: 20px;
+}
+
+.upperBox {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 10px;
+  width: 100vw;
 }

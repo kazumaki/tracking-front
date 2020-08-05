@@ -7,4 +7,22 @@
 
 .dataTitle {
   text-align: center;
+  text-transform: capitalize;
+  font-size: 0.8em;
+}
+
+.dataBox {
+  display: flex;
+  align-items: center;
+}
+
+.dataValue {
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+.dataUnit {
+  text-transform: uppercase;
+  font-size: 0.6em;
+  margin-left: 2px;
 }

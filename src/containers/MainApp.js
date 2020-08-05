@@ -32,10 +32,12 @@ const MainApp = props => {
     <Root>
       <div className={styles.mainContainer}>
         { showAddMeasurement && <AddMeasurement setShowAddMeasurement={setShowAddMeasurement} /> }
-        <div className={styles.addMeasurementButtonBox}>
-          <button type="button" className={styles.addMeasurementButton} onClick={() => setShowAddMeasurement(true)}>Add Measurement</button>
+        <div className={styles.upperBox}>
+          <div className={styles.addMeasurementButtonBox}>
+            <button type="button" className={styles.addMeasurementButton} onClick={() => setShowAddMeasurement(true)}>Add Measurement</button>
+          </div>
+          <DateSelector />
         </div>
-        <DateSelector />
         <MeasurementsFilter />
       </div>
     </Root>
