@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
 import MeasurementListDisplay from '../components/MeasurementListDisplay';
 import { groupMeasurementsByDate, filterMeasurementByType } from '../lib/measurement';
 import RequireAuth from './RequireAuth';
-import { Link, Redirect } from 'react-router-dom';
+import Root from '../components/Root';
 
 const MeasurementList = props => {
   const { measurements, measurementTypes } = props;
@@ -15,16 +16,15 @@ const MeasurementList = props => {
   const measurementType = measurementTypes[params.measurementTypeId];
 
   return (
-    <div>
-      <RequireAuth />
+    <Root>
       { goBack && <Redirect to="/" /> }
       <button type="button" onClick={() => setGoBack(true)}> Backzada </button>
       <MeasurementListDisplay
-        measurements={groupedMeasurements}
+        measurements={filteredMeasurements}
         measurementType={measurementType}
       />
-    </div>
-  )
+    </Root>
+  );
 };
 
 const mapStateToProps = state => (
@@ -33,7 +33,5 @@ const mapStateToProps = state => (
     measurements: state.measurementReducer.measurements,
   }
 );
-
-
 
 export default connect(mapStateToProps, null)(MeasurementList);

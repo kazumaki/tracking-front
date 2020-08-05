@@ -1,21 +1,18 @@
 import React from 'react';
+import MeasurementListBox from './MeasurementListBox';
 
-const MeasurementListDisplay = ({measurements, measurementType}) => {
-  console.log(measurements);
+const MeasurementListDisplay = ({ measurements, measurementType }) => {
+  const measurementKeys = Object.keys(measurements).reverse();
+  console.log(measurementKeys, measurements);
   return (
     <div>
-      {measurementType && measurementType.name}
-      {Object.keys(measurements).reverse().map(date => {
+      {measurementKeys.map((key, index) => {
+        const currentMeasurement = measurements[key];
+        const nextKey = measurementKeys[index + 1];
+        const nextMeasurement = measurements[nextKey];
         return (
-          <ul key={date}>
-            <h1>{date}</h1>
-            {measurements[date].reverse().map(measurement => {
-              return (
-                <li key={measurement.id}>{`${measurement.value} ${measurementType.unit}`}</li>
-              );
-            })}
-          </ul>
-        );
+          <MeasurementListBox measurement={currentMeasurement} measurementType={measurementType} nextMeasurement={nextMeasurement} />
+        )
       })}
     </div>
   );

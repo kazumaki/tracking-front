@@ -4,7 +4,9 @@ import MeasurementForm from '../components/MeasurementForm';
 import RequireAuth from './RequireAuth';
 import { postMeasurement } from '../store/actions/measurementActions';
 
-const AddMeasurement = ({ postMeasurement, token, measurementTypes, setShowAddMeasurement }) => {
+const AddMeasurement = ({
+  postMeasurement, token, measurementTypes, setShowAddMeasurement,
+}) => {
   const [measurementType, setMeasurementType] = useState(1);
   const [value, setValue] = useState(1);
 

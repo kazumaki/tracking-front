@@ -1,4 +1,4 @@
-import { SET_DATE_FILTER, SET_PREVIOUS_DATE_FILTER, SET_NEXT_DATE_FILTER } from "../actions/actionTypes";
+import { SET_DATE_FILTER, SET_PREVIOUS_DATE_FILTER, SET_NEXT_DATE_FILTER } from '../actions/actionTypes';
 
 const defaultState = {
   date: new Date((new Date()).setHours(23, 59, 59, 999)),

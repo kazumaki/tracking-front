@@ -51,4 +51,6 @@ const filterMeasurementByType = (measurements, measurementType) => (
   }, {})
 );
 
-export { filterMeasurementByDate, filterMeasurementByType, groupMeasurementsByType, groupMeasurementsByDate };
+export {
+  filterMeasurementByDate, filterMeasurementByType, groupMeasurementsByType, groupMeasurementsByDate,
+};

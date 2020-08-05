@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import Measurements from '../components/Measurements';
 import { filterMeasurementByDate } from '../lib/measurement';
 
-const MeasurementsFilter = ({measurements, dateFilter, measurementTypes}) => {
+const MeasurementsFilter = ({ measurements, dateFilter, measurementTypes }) => {
   const filteredMeasurements = filterMeasurementByDate(measurements, dateFilter);
   return (
     <Measurements measurements={filteredMeasurements} measurementTypes={measurementTypes} />
-  )
+  );
 };
 
 const mapStateToProps = state => ({

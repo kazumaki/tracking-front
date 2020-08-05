@@ -3,11 +3,9 @@ import { connect } from 'react-redux';
 import DateDisplay from '../components/DateDisplay';
 import { setPreviousDate, setNextDate } from '../store/actions/filterActions';
 
-const DateSelector = ({setPreviousDate, setNextDate, date}) => {
-  return (
-    <DateDisplay setPreviousDate={setPreviousDate} setNextDate={setNextDate} date={date} />
-  );
-};
+const DateSelector = ({ setPreviousDate, setNextDate, date }) => (
+  <DateDisplay setPreviousDate={setPreviousDate} setNextDate={setNextDate} date={date} />
+);
 
 const mapDispatchToProps = dispatch => (
   {

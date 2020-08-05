@@ -8,9 +8,12 @@ import { fetchMeasurements } from '../store/actions/measurementActions';
 import getMeasurementTypes from '../store/actions/measurementTypeActions';
 import Header from '../components/Header';
 import styles from '../styles/MainApp.module.scss';
+import Root from '../components/Root';
 
 const MainApp = props => {
-  const { measurementTypes, getMeasurementTypes, fetchMeasurements, token } = props;
+  const {
+    measurementTypes, getMeasurementTypes, fetchMeasurements, token,
+  } = props;
   const [showAddMeasurement, setShowAddMeasurement] = useState(false);
 
   useEffect(() => {
@@ -26,9 +29,7 @@ const MainApp = props => {
   }, [token, getMeasurementTypes]);
 
   return (
-    <div>
-      <RequireAuth />
-      <Header />
+    <Root>
       <div className={styles.mainContainer}>
         { showAddMeasurement && <AddMeasurement setShowAddMeasurement={setShowAddMeasurement} /> }
         <div className={styles.addMeasurementButtonBox}>
@@ -37,7 +38,7 @@ const MainApp = props => {
         <DateSelector />
         <MeasurementsFilter />
       </div>
-    </div>
+    </Root>
   );
 };
 

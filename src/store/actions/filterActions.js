@@ -1,4 +1,4 @@
-import { SET_DATE_FILTER, SET_NEXT_DATE_FILTER, SET_PREVIOUS_DATE_FILTER } from "./actionTypes";
+import { SET_DATE_FILTER, SET_NEXT_DATE_FILTER, SET_PREVIOUS_DATE_FILTER } from './actionTypes';
 
 const setDateFilter = date => ({ type: SET_DATE_FILTER, date });
 
