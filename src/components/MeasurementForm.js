@@ -38,7 +38,7 @@ const MeasurementForm = props => {
             <div>{`Value (${measurementTypes[measurementType].unit})`}</div>
             <input type="number" step="0.1" onChange={e => setValue(e.target.value)} value={value} />
           </label>
-          <input type="submit" />
+          <input type="submit" value="Add" />
           <button type="button" onClick={onClickCloseButton}>Cancel</button>
         </form>
       </div>
