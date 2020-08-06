@@ -1,68 +1,98 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Tracking Front
 
-## Available Scripts
+Tracking Front is a SPA app that gathers data from [Tracking API](https://github.com/kazumaki/tracking-api)
 
-In the project directory, you can run:
+## Screenshot
 
-### `yarn start`
+![Screenshot of the webpage](images/app-screenshot.png)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Live Version
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+[Live Version](http://vinic-tracking-front.herokuapp.com/)
 
-### `yarn test`
+## Getting Started
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Clone the repository into your local computer.
 
-### `yarn build`
+```
+$ git clone https://github.com/kazumaki/tracking-front.git
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Installing
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+First, you'll have to install the newest version of [Node](https://nodejs.org/en/download/). Otherwise, the npx command might not be available. Then move into the project main directory on the console and follow the instructions below. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Install all packages:
 
-### `yarn eject`
+```
+$ npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Run local webserver
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+$ npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Now in your browser type the following address and press enter.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+http://127.0.0.1:5000
+```
 
-## Learn More
+### Testing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Run test command
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+npm run test
+```
 
-### Code Splitting
+### Using the App
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+The live version already has a test account, just input email: test@mail.com and password: test123. But if you want to create your own just click on Signup and input data requested.
 
-### Analyzing the Bundle Size
+#### Main Page Features
+* Logout - 1
+* Add Measurement - 2
+* Change Measurements Date - 3
+* Click To Show Measurements History - 4
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+![Main App](images/main-app-actions.png) 
 
-### Making a Progressive Web App
+### Measurement History Features
+* Go Back To Main Page - 1
+* Delete A Specific Measurement - 2
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## App Development
 
-### Advanced Configuration
+### Done
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+On the first day, I focused on developing the API calls to get data from [Tracking API](https://github.com/kazumaki/tracking-api) and store it inside the Redux store. On the second day I've focused on set-up a authentication system for my application. On the third day I've developed the basic layout of the application with all basic functionalities. On the fourth and fifth day I've worked on the styling of the application.
 
-### Deployment
+After login the application fetches measurements only once from the server and every action after this is done only on the client-side to avoid getting the list of measurements every time from the server, it just checks if the server returns a good response and then modify the redux store.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+### Ideas for improvement
 
-### `yarn build` fails to minify
+* Add edit measurement option
+* Create a desktop version
+* Display charts to better visualization of data
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Built With
+
+* [JavaScript](https://www.javascript.com/) - Programming language used
+* [React](https://reactjs.org/) - Library used for build UI
+* [Redux](https://redux.js.org/) - Library used to share state between React components
+* [HTML](https://en.wikipedia.org/wiki/HTML) - Hypertext Markup Language
+* [VS Code](https://code.visualstudio.com/) - The code editor used
+
+## Assets
+
+* [All graphics assets](https://www.flaticon.com/authors/freepik) - All the assets used in the app
+* [Design based](https://www.behance.net/gallery/13271423/Bodytrackit-An-iOs-app-Branding-UX-and-UI) - Based design
+
+## Author
+
+👤 **Vinicius Campos Carvalho**
+
+<a href="https://github.com/kazumaki" rel="noopener noreferrer" target="_blank">
