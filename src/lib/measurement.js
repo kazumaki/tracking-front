@@ -30,7 +30,9 @@ const groupMeasurementsByDate = measurements => (
 const filterMeasurementByDate = (measurements, date) => {
   const groupedMeasurements = groupMeasurementsByType(measurements);
   return Object.keys(groupedMeasurements).reduce((obj, typeId) => {
-    const filteredMeasurements = groupedMeasurements[typeId].filter(measurement => measurement.created_at <= date);
+    const filteredMeasurements = groupedMeasurements[typeId].filter(
+      measurement => measurement.created_at <= date,
+    );
     /* eslint-disable no-param-reassign */
     obj[typeId] = filteredMeasurements.slice(-1).pop();
     /* eslint-enable no-param-reassign */
@@ -52,5 +54,8 @@ const filterMeasurementByType = (measurements, measurementType) => (
 );
 
 export {
-  filterMeasurementByDate, filterMeasurementByType, groupMeasurementsByType, groupMeasurementsByDate,
+  filterMeasurementByDate,
+  filterMeasurementByType,
+  groupMeasurementsByType,
+  groupMeasurementsByDate,
 };

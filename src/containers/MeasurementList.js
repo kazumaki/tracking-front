@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
 import MeasurementListDisplay from '../components/MeasurementListDisplay';
 import { filterMeasurementByType } from '../lib/measurement';
-import RequireAuth from './RequireAuth';
 import Root from '../components/Root';
 
 const MeasurementList = props => {
@@ -21,6 +20,16 @@ const MeasurementList = props => {
       />
     </Root>
   );
+};
+
+MeasurementList.propTypes = {
+  measurements: PropTypes.objectOf(PropTypes.any).isRequired,
+  measurementTypes: PropTypes.objectOf(PropTypes.any).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      measurementTypeId: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = state => (

@@ -16,9 +16,11 @@ const measurementTypeReducer = (state = defaultState, action) => {
         lastAction: action.type,
       };
 
-    case GET_MEASUREMENT_TYPES_SUCCESS:
+    case GET_MEASUREMENT_TYPES_SUCCESS: {
       const receivedMeasurementTypes = action.response.data.reduce((obj, measurementType) => {
+        /* eslint-disable no-param-reassign */
         obj[measurementType.id] = measurementType;
+        /* eslint-enable no-param-reassign */
         return obj;
       }, {});
 
@@ -32,6 +34,7 @@ const measurementTypeReducer = (state = defaultState, action) => {
           ...receivedMeasurementTypes,
         },
       };
+    }
 
     case GET_MEASUREMENT_TYPES_FAILURE:
       return {

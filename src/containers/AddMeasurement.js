@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import MeasurementForm from '../components/MeasurementForm';
 import RequireAuth from './RequireAuth';
 import { postMeasurement } from '../store/actions/measurementActions';
+import { measurementTypeShape } from '../lib/propTypeShapes';
 
 const AddMeasurement = ({
   postMeasurement, token, measurementTypes, setShowAddMeasurement,
@@ -22,9 +24,9 @@ const AddMeasurement = ({
     setShowAddMeasurement(false);
   };
 
-  const onClickCloseButton = e => {
+  const onClickCloseButton = () => {
     setShowAddMeasurement(false);
-  }
+  };
 
   return (
     <div>
@@ -40,6 +42,13 @@ const AddMeasurement = ({
       />
     </div>
   );
+};
+
+AddMeasurement.propTypes = {
+  token: PropTypes.string.isRequired,
+  measurementTypes: PropTypes.objectOf(measurementTypeShape).isRequired,
+  setShowAddMeasurement: PropTypes.func.isRequired,
+  postMeasurement: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => (

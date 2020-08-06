@@ -1,5 +1,6 @@
 import React from 'react';
-import styles from '../styles/LoginForm.module.scss';
+import PropTypes from 'prop-types';
+import '../styles/LoginForm.module.scss';
 
 const LoginForm = props => {
   const {
@@ -19,6 +20,14 @@ const LoginForm = props => {
       <input type="submit" value="Login" />
     </form>
   );
+};
+
+LoginForm.propTypes = {
+  onSubmitLogin: PropTypes.func.isRequired,
+  email: PropTypes.string.isRequired,
+  setEmail: PropTypes.func.isRequired,
+  password: PropTypes.string.isRequired,
+  setPassword: PropTypes.func.isRequired,
 };
 
 export default LoginForm;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from '../styles/DateDisplay.module.scss';
 
 const DateDisplay = ({ setPreviousDate, setNextDate, date }) => (
@@ -8,5 +9,11 @@ const DateDisplay = ({ setPreviousDate, setNextDate, date }) => (
     <button className={styles.button} type="button" onClick={() => setNextDate()}><i aria-label="Next day" className="fas fa-lg fa-chevron-right" /></button>
   </div>
 );
+
+DateDisplay.propTypes = {
+  setPreviousDate: PropTypes.func.isRequired,
+  setNextDate: PropTypes.func.isRequired,
+  date: PropTypes.instanceOf(Date).isRequired,
+};
 
 export default DateDisplay;

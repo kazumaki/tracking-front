@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { signup } from '../store/actions/authActions';
 import styles from '../styles/Signup.module.scss';
 import SignupForm from '../components/SignupForm';
 import RequireNoAuth from './RequireNoAuth';
 import Header from '../components/Header';
-import { Link } from 'react-router-dom';
 
 const Signup = ({ signup }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [password_confirmation, setPasswordConfirmation] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
   const onSubmitSignup = e => {
     e.preventDefault();
@@ -20,7 +21,7 @@ const Signup = ({ signup }) => {
       name,
       email,
       password,
-      password_confirmation,
+      password_confirmation: passwordConfirmation,
     };
 
     signup(signupData);
@@ -39,13 +40,17 @@ const Signup = ({ signup }) => {
           setEmail={setEmail}
           password={password}
           setPassword={setPassword}
-          passwordConfirmation={password_confirmation}
+          passwordConfirmation={passwordConfirmation}
           setPasswordConfirmation={setPasswordConfirmation}
         />
         <Link to="/login">Already have an account? Sign in</Link>
       </div>
     </div>
   );
+};
+
+Signup.propTypes = {
+  signup: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => (

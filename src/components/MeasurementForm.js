@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styles from '../styles/MeasurementForm.module.scss';
 
 const MeasurementForm = props => {
@@ -11,7 +12,6 @@ const MeasurementForm = props => {
     measurementTypes,
     onClickCloseButton,
   } = props;
-
   return (
     <div className={styles.outterBox}>
       <div className={styles.innerBox}>
@@ -21,12 +21,13 @@ const MeasurementForm = props => {
             <select id="type" onChange={e => setMeasurementType(e.target.value)} value={measurementType}>
               {
               Object.entries(measurementTypes).map(measurementType => {
-                measurementType = measurementType[1];
+                const [key, currentMeasurementType] = measurementType;
                 return (
                   <option
-                    key={measurementType.name}
-                    value={measurementType.id}
-                  >{measurementType.name}
+                    key={key}
+                    value={currentMeasurementType.id}
+                  >
+                    {currentMeasurementType.name}
                   </option>
                 );
               })
@@ -43,6 +44,18 @@ const MeasurementForm = props => {
       </div>
     </div>
   );
+};
+
+MeasurementForm.propTypes = {
+  onSubmitForm: PropTypes.func.isRequired,
+  setMeasurementType: PropTypes.func.isRequired,
+  setValue: PropTypes.func.isRequired,
+  value: PropTypes.number.isRequired,
+  measurementType: PropTypes.number.isRequired,
+  measurementTypes: PropTypes.objectOf(
+    PropTypes.any,
+  ).isRequired,
+  onClickCloseButton: PropTypes.func.isRequired,
 };
 
 export default MeasurementForm;

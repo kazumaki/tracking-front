@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import MeasurementListBox from '../containers/MeasurementListBox';
 import styles from '../styles/MeasurementListDisplay.module.scss';
+import { measurementTypeShape } from '../lib/propTypeShapes';
 
 const MeasurementListDisplay = ({ measurements, measurementType, history }) => {
   const measurementKeys = Object.keys(measurements).reverse();
@@ -20,16 +22,17 @@ const MeasurementListDisplay = ({ measurements, measurementType, history }) => {
         const nextMeasurement = measurements[nextKey];
         const renderComponent = (
           <MeasurementListBox
-            key={key} measurement={currentMeasurement}
+            key={key}
+            measurement={currentMeasurement}
             measurementType={measurementType}
             nextMeasurement={nextMeasurement}
           />
         );
 
-        if (currentDate != currentMeasurement.created_at.toDateString()) {
+        if (currentDate !== currentMeasurement.created_at.toDateString()) {
           currentDate = currentMeasurement.created_at.toDateString();
           return (
-            <div>
+            <div key={key}>
               <div className={styles.date}>{currentDate}</div>
               {renderComponent}
             </div>
@@ -42,6 +45,14 @@ const MeasurementListDisplay = ({ measurements, measurementType, history }) => {
       })}
     </div>
   );
+};
+
+MeasurementListDisplay.propTypes = {
+  measurements: PropTypes.objectOf(PropTypes.any).isRequired,
+  measurementType: measurementTypeShape.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 export default withRouter(MeasurementListDisplay);

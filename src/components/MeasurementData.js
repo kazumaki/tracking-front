@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../styles/MeasurementData.module.scss';
+import { measurementShape, measurementTypeShape } from '../lib/propTypeShapes';
 
 const MeasurementData = ({ measurement, measurementType }) => (
   <div className={styles.mainContainer}>
@@ -14,5 +15,14 @@ const MeasurementData = ({ measurement, measurementType }) => (
     </div>
   </div>
 );
+
+MeasurementData.defaultProps = {
+  measurement: null,
+};
+
+MeasurementData.propTypes = {
+  measurement: measurementShape,
+  measurementType: measurementTypeShape.isRequired,
+};
 
 export default MeasurementData;

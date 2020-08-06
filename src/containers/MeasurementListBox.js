@@ -1,11 +1,15 @@
 import React from 'react';
-import styles from '../styles/MeasurementListBox.module.scss';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import styles from '../styles/MeasurementListBox.module.scss';
 import { deleteMeasurement } from '../store/actions/measurementActions';
+import { measurementShape, measurementTypeShape } from '../lib/propTypeShapes';
 
-const MeasurementListBox = ({measurement, measurementType, nextMeasurement, token, deleteMeasurement}) => {
+const MeasurementListBox = ({
+  measurement, measurementType, nextMeasurement, token, deleteMeasurement,
+}) => {
   let difference = 0;
-  if(nextMeasurement) { difference = measurement.value - nextMeasurement.value }
+  if (nextMeasurement) { difference = measurement.value - nextMeasurement.value; }
 
   return (
     <div className={styles.mainBox}>
@@ -29,11 +33,31 @@ const MeasurementListBox = ({measurement, measurementType, nextMeasurement, toke
             { measurementType.unit }
           </div>
         </div>
-        <div className={styles.closeButton} onClick={() => deleteMeasurement(measurement, token)}><i className="fas fa-lg fa-times"></i></div>
+        <div
+          className={styles.closeButton}
+          role="button"
+          tabIndex={0}
+          onKeyDown={() => deleteMeasurement(measurement, token)}
+          onClick={() => deleteMeasurement(measurement, token)}
+        >
+          <i className="fas fa-lg fa-times" />
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
+
+MeasurementListBox.defaultProps = {
+  nextMeasurement: null,
+};
+
+MeasurementListBox.propTypes = {
+  measurement: measurementShape.isRequired,
+  nextMeasurement: measurementShape,
+  measurementType: measurementTypeShape.isRequired,
+  token: PropTypes.string.isRequired,
+  deleteMeasurement: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = dispatch => (
   {

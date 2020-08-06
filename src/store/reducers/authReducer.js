@@ -3,8 +3,8 @@ import {
 } from '../actions/actionTypes';
 
 const defaultState = {
-  token: null,
-  response: null,
+  token: '',
+  response: { data: { } },
   isLoading: false,
 };
 
@@ -24,7 +24,7 @@ const authReducer = (state = defaultState, action) => {
     case LOGIN_FAILURE:
       return {
         ...state,
-        token: null,
+        token: '',
         response: action.response,
         isLoading: false,
       };

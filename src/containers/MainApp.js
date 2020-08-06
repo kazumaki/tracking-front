@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import RequireAuth from './RequireAuth';
 import DateSelector from './DateSelector';
 import MeasurementsFilter from './MeasurementsFilter';
 import AddMeasurement from './AddMeasurement';
 import { fetchMeasurements } from '../store/actions/measurementActions';
 import getMeasurementTypes from '../store/actions/measurementTypeActions';
-import Header from '../components/Header';
 import styles from '../styles/MainApp.module.scss';
 import Root from '../components/Root';
 
@@ -42,6 +41,13 @@ const MainApp = props => {
       </div>
     </Root>
   );
+};
+
+MainApp.propTypes = {
+  measurementTypes: PropTypes.objectOf(PropTypes.any).isRequired,
+  getMeasurementTypes: PropTypes.func.isRequired,
+  fetchMeasurements: PropTypes.func.isRequired,
+  token: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => (

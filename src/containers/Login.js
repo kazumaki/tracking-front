@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../store/actions/authActions';
 import styles from '../styles/Login.module.scss';
@@ -34,6 +35,20 @@ const Login = ({ login, token, response }) => {
       { (!token && response) && response.data.message }
     </div>
   );
+};
+
+Login.defaultProps = {
+  response: { data: { message: '' } },
+};
+
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  token: PropTypes.string.isRequired,
+  response: PropTypes.shape({
+    data: PropTypes.shape({
+      message: PropTypes.string,
+    }),
+  }),
 };
 
 const mapDispatchToProps = dispatch => ({
