@@ -64,7 +64,7 @@ The live version already has a test account, just input email: test@mail.com and
 * Go Back To Main Page - 1
 * Delete A Specific Measurement - 2
 
-![Measurements History](images/measurements-history-features.png) 
+![Measurements History](images/measurement-history-features.png) 
 
 ## App Development
 
