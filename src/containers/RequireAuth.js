@@ -21,6 +21,7 @@ const RequireAuth = ({ token, setToken }) => {
 
 RequireAuth.propTypes = {
   token: PropTypes.string.isRequired,
+  setToken: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => (

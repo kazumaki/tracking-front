@@ -9,7 +9,6 @@ const defaultState = {
 };
 
 const authReducer = (state = defaultState, action) => {
-  console.log(action);
   switch (action.type) {
     case LOGIN_START:
       return { ...state, isLoading: true };

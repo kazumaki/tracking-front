@@ -9,12 +9,15 @@ const cookies = new Cookies();
 const axios = require('axios');
 const { default: config } = require('../../lib/config');
 
-const setToken = token => (
-  {
-    type: SET_TOKEN,
-    token,
-  }
-);
+const setToken = token => {
+  cookies.set('token', token);
+  return (
+    {
+      type: SET_TOKEN,
+      token,
+    }
+  );
+};
 
 const loginStart = () => (
   {

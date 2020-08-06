@@ -6,7 +6,7 @@ import { login } from '../store/actions/authActions';
 import styles from '../styles/Login.module.scss';
 import RequireNoAuth from './RequireNoAuth';
 import LoginForm from '../components/LoginForm';
-import Header from '../components/Header';
+import Header from './Header';
 import LoadingChecker from './LoadingChecker';
 
 const Login = ({ login, token, response }) => {

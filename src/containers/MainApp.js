@@ -11,7 +11,6 @@ const MainApp = props => {
   const {
     measurementTypes, getMeasurementTypes, fetchMeasurements, token,
   } = props;
-  console.log(props);
   const { match: { path } } = props;
   const { match: { params } } = props;
 

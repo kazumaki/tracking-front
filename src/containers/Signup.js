@@ -6,7 +6,7 @@ import { signup } from '../store/actions/authActions';
 import styles from '../styles/Signup.module.scss';
 import SignupForm from '../components/SignupForm';
 import RequireNoAuth from './RequireNoAuth';
-import Header from '../components/Header';
+import Header from './Header';
 import LoadingChecker from './LoadingChecker';
 
 const Signup = ({ signup }) => {
