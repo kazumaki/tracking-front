@@ -1,9 +1,20 @@
+import Cookies from 'universal-cookie';
+
 import {
-  LOGIN_SUCESS, LOGIN_FAILURE, LOGIN_START, SIGNUP_START, SIGNUP_SUCCESS, SIGNUP_FAILURE,
+  LOGIN_SUCESS, LOGIN_FAILURE, LOGIN_START, SIGNUP_START, SIGNUP_SUCCESS, SIGNUP_FAILURE, SET_TOKEN,
 } from './actionTypes';
+
+const cookies = new Cookies();
 
 const axios = require('axios');
 const { default: config } = require('../../lib/config');
+
+const setToken = token => (
+  {
+    type: SET_TOKEN,
+    token,
+  }
+);
 
 const loginStart = () => (
   {
@@ -11,12 +22,15 @@ const loginStart = () => (
   }
 );
 
-const loginSuccess = response => (
-  {
-    type: LOGIN_SUCESS,
-    response,
-  }
-);
+const loginSuccess = response => {
+  cookies.set('token', response.data.auth_token);
+  return (
+    {
+      type: LOGIN_SUCESS,
+      response,
+    }
+  );
+};
 
 const loginFailure = response => ({
   type: LOGIN_FAILURE,
@@ -38,12 +52,15 @@ const signupStart = () => (
   }
 );
 
-const signupSuccess = response => (
-  {
-    type: SIGNUP_SUCCESS,
-    response,
-  }
-);
+const signupSuccess = response => {
+  cookies.set('token', response.data.auth_token);
+  return (
+    {
+      type: SIGNUP_SUCCESS,
+      response,
+    }
+  );
+};
 
 const signupFailure = response => (
   {
@@ -61,4 +78,4 @@ const signup = signupData => (
   }
 );
 
-export { login, signup };
+export { login, signup, setToken };

@@ -7,6 +7,7 @@ import styles from '../styles/Login.module.scss';
 import RequireNoAuth from './RequireNoAuth';
 import LoginForm from '../components/LoginForm';
 import Header from '../components/Header';
+import LoadingChecker from './LoadingChecker';
 
 const Login = ({ login, token, response }) => {
   const [email, setEmail] = useState('');
@@ -22,6 +23,7 @@ const Login = ({ login, token, response }) => {
     <div>
       <RequireNoAuth />
       <Header />
+      <LoadingChecker />
       <div className={styles.mainContainer}>
         <LoginForm
           onSubmitLogin={onSubmitLogin}

@@ -1,3 +1,8 @@
+import Cookies from 'universal-cookie';
+import { setToken } from './authActions';
+
+const cookies = new Cookies();
+
 const axios = require('axios');
 const {
   FETCH_MEASUREMENTS_START,
@@ -37,7 +42,13 @@ const fetchMeasurements = token => (
       },
     })
       .then(response => dispatch(fetchMeasurementsSuccess(response)))
-      .catch(error => dispatch(fetchMeasurementsFailure(error.response)));
+      .catch(error => {
+        if (error.response.status === 422) {
+          cookies.set('token', '');
+          dispatch(setToken(''));
+        }
+        dispatch(fetchMeasurementsFailure(error.response));
+      });
   }
 );
 
@@ -66,7 +77,13 @@ const postMeasurement = (measurement, token) => (
       },
     })
       .then(response => dispatch(postMeasurementSuccess(response)))
-      .catch(error => dispatch(postMeasurementFailure(error.response)));
+      .catch(error => {
+        if (error.response.status === 422) {
+          cookies.set('token', '');
+          dispatch(setToken(''));
+        }
+        dispatch(postMeasurementFailure(error.response));
+      });
   }
 );
 
@@ -92,7 +109,13 @@ const deleteMeasurement = (measurement, token) => (
       },
     })
       .then(response => dispatch(deleteMeasurementSuccess(response, measurement)))
-      .catch(error => dispatch(deleteMeasurementFailure(error.response)));
+      .catch(error => {
+        if (error.response.status === 422) {
+          cookies.set('token', '');
+          dispatch(setToken(''));
+        }
+        dispatch(deleteMeasurementFailure(error.response));
+      });
   }
 );
 

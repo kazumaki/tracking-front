@@ -1,3 +1,8 @@
+import Cookies from 'universal-cookie';
+import { setToken } from './authActions';
+
+const cookies = new Cookies();
+
 const axios = require('axios');
 const { default: config } = require('../../lib/config');
 
@@ -32,7 +37,13 @@ const getMeasurementTypes = token => (
       },
     })
       .then(response => dispatch(getMeasurementTypesSuccess(response)))
-      .catch(error => dispatch(getMeasurementTypesFailure(error.response)));
+      .catch(error => {
+        if (error.response.status === 422) {
+          cookies.set('token', '');
+          dispatch(setToken(''));
+        }
+        dispatch(getMeasurementTypesFailure(error.response));
+      });
   }
 );
 

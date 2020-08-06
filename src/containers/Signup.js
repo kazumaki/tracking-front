@@ -7,6 +7,7 @@ import styles from '../styles/Signup.module.scss';
 import SignupForm from '../components/SignupForm';
 import RequireNoAuth from './RequireNoAuth';
 import Header from '../components/Header';
+import LoadingChecker from './LoadingChecker';
 
 const Signup = ({ signup }) => {
   const [name, setName] = useState('');
@@ -30,6 +31,7 @@ const Signup = ({ signup }) => {
   return (
     <div>
       <RequireNoAuth />
+      <LoadingChecker />
       <Header />
       <div className={styles.mainContainer}>
         <SignupForm

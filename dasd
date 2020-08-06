@@ -1,0 +1,25 @@
+[33mdb9d4a6[m[33m ([m[1;36mHEAD -> [m[1;32mtracking-front[m[33m, [m[1;31morigin/tracking-front[m[33m)[m Fix all linter errors
+[33m7fd23c0[m Style measurement list compoennt and it children
+[33m19ebdbf[m Style add measurement form
+[33m0ea3638[m Add default font-family to the whole app; Style MeasurementBox and MeasurementData components
+[33m1b4acc8[m Style Login and Signup forms
+[33m2247523[m Add Root and MeasurementListBox components
+[33meda9571[m Add more styles to Measurements, MeasurementBox; Add styles to DateDisplay
+[33me84abf2[m Add border to MeasurementBox
+[33m14da446[m Apply single responsability rule to components; Create Measurements, MeasurementData, and MeasurementBox components; Style Measurments and childerns components
+[33md05c638[m Add all navigation modules to the components
+[33mb7e616d[m Fix MeasurementListDisplay to show measurements date in decreasing order
+[33me149180[m Create MeasurementListContainer and MeasurementListDisplay component to show specific types os measurements in a list
+[33m8601ac1[m Create filterReducer, Create filterActions to filter measurements based on date; Create DateDisplay component and DateSelector container to handle date filtering
+[33m04db177[m Create deleteMeasurement actions; Create delete measurement reducer logic
+[33mc345ded[m Run linter
+[33mdd88de7[m Create measurements list component; Display all measurements fetched from the api
+[33mf6220e4[m Create MeasurementTypes actions; Create MeasurementTypeReducer; Get measurement types from server
+[33m54e1cc7[m Add redux actions to handle measurement post; Add reducer login to handle measurement post; Add measurement form component
+[33m916b03c[m Create actions to handle measurements fetches; Develop measurementReducer to handle measurement actions
+[33m098201f[m Separete signup into a component and a container; Add actions for user signup; Add reducer logic for signup user
+[33m6a1d51c[m Set up authReducer; Create Login logic; Separate Login Container from Login component; Create RequireAuth and RequireNoAuth to control access to some pages
+[33me0e999d[m Add redux, redux-thunk, and react-redux packages; Add rootReducer, authReducer, and measurementReducer files
+[33m8c5831c[m Remove useless files; Start initial setup of folders
+[33m3c9fa3d[m Add linter files and configurations
+[33m76a7b40[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/development[m[33m, [m[1;32mmaster[m[33m, [m[1;32mdevelopment[m[33m)[m Initialize project using Create React App

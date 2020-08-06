@@ -70,7 +70,7 @@ const measurementReducer = (state = defaultState, action) => {
       measurement.created_at = new Date(measurement.created_at);
       return {
         ...state,
-        isLoading: true,
+        isLoading: false,
         lastAction: action.type,
         response: action.response,
         measurements: {

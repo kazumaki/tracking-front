@@ -6,11 +6,9 @@ import { filterMeasurementByType } from '../lib/measurement';
 import Root from '../components/Root';
 
 const MeasurementList = props => {
-  const { measurements, measurementTypes } = props;
-  const { match: { params } } = props;
-
-  const filteredMeasurements = filterMeasurementByType(measurements, params.measurementTypeId);
-  const measurementType = measurementTypes[params.measurementTypeId];
+  const { measurements, measurementTypes, measurementTypeId } = props;
+  const filteredMeasurements = filterMeasurementByType(measurements, measurementTypeId);
+  const measurementType = measurementTypes[measurementTypeId];
 
   return (
     <Root>
@@ -25,11 +23,7 @@ const MeasurementList = props => {
 MeasurementList.propTypes = {
   measurements: PropTypes.objectOf(PropTypes.any).isRequired,
   measurementTypes: PropTypes.objectOf(PropTypes.any).isRequired,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      measurementTypeId: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
+  measurementTypeId: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => (

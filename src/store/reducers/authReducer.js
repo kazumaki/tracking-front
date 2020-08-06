@@ -1,5 +1,5 @@
 import {
-  LOGIN_SUCESS, LOGIN_FAILURE, LOGIN_START, SIGNUP_START, SIGNUP_SUCCESS, SIGNUP_FAILURE,
+  LOGIN_SUCESS, LOGIN_FAILURE, LOGIN_START, SIGNUP_START, SIGNUP_SUCCESS, SIGNUP_FAILURE, SET_TOKEN,
 } from '../actions/actionTypes';
 
 const defaultState = {
@@ -9,6 +9,7 @@ const defaultState = {
 };
 
 const authReducer = (state = defaultState, action) => {
+  console.log(action);
   switch (action.type) {
     case LOGIN_START:
       return { ...state, isLoading: true };
@@ -47,6 +48,13 @@ const authReducer = (state = defaultState, action) => {
         response: action.response,
         isLoading: false,
       };
+
+    case SET_TOKEN:
+      return {
+        ...state,
+        token: action.token,
+      };
+
     default:
       return state;
   }
