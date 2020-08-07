@@ -103,6 +103,12 @@ After login the application fetches measurements only once from the server and e
 
 👤 **Vinicius Campos Carvalho**
 
+<a href="https://github.com/kazumaki" rel="noopener noreferrer" target="_blank">
+
+  ![Profile Image](images/vinicius-profile.png) 
+
+</a>
+
 ## Presentation
 
 [Video](https://youtu.be/XMryL5huAJM)
