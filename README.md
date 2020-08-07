@@ -28,6 +28,12 @@ Install all packages:
 $ npm install
 ```
 
+Build
+
+```
+$ npm run build
+```
+
 Run local webserver
 
 ```
@@ -96,5 +102,9 @@ After login the application fetches measurements only once from the server and e
 ## Author
 
 👤 **Vinicius Campos Carvalho**
+
+## Presentation
+
+[Video](https://youtu.be/XMryL5huAJM)
 
 <a href="https://github.com/kazumaki" rel="noopener noreferrer" target="_blank">
