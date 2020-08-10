@@ -14,8 +14,6 @@ const MeasurementForm = props => {
     onClickCloseButton,
   } = props;
 
-  console.log(measurementTypes);
-
   return (
     <div className={styles.outterBox}>
       <div className={styles.innerBox}>
@@ -43,7 +41,7 @@ const MeasurementForm = props => {
             <input type="number" step="0.1" onChange={e => setValue(e.target.value)} value={value} />
           </label>
           <input type="submit" value="Add" />
-          <button type="button" onClick={onClickCloseButton}>Cancel</button>
+          <button type="button" className={styles.closeButton} onClick={onClickCloseButton}>Cancel</button>
         </form>
       </div>
     </div>
