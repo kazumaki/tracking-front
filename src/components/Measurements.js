@@ -4,7 +4,7 @@ import styles from '../styles/Measurements.module.scss';
 import MeasurementBox from './MeasurementBox';
 import { measurementTypeShape, measurementShape } from '../lib/propTypeShapes';
 
-const Measurements = ({ measurementTypes, measurements }) => (
+const Measurements = ({ measurementTypes, measurements, setShowAddMeasurement }) => (
   <div className={styles.mainContainer}>
     {Object.keys(measurementTypes).map(typeId => {
       const measurementType = measurementTypes[typeId];
@@ -14,6 +14,7 @@ const Measurements = ({ measurementTypes, measurements }) => (
           key={typeId}
           measurement={measurements[typeId]}
           measurementType={measurementType}
+          setShowAddMeasurement={setShowAddMeasurement}
         />
       );
     })}
@@ -23,6 +24,7 @@ const Measurements = ({ measurementTypes, measurements }) => (
 Measurements.propTypes = {
   measurementTypes: PropTypes.objectOf(measurementTypeShape).isRequired,
   measurements: PropTypes.objectOf(measurementShape).isRequired,
+  setShowAddMeasurement: PropTypes.func.isRequired,
 };
 
 export default Measurements;

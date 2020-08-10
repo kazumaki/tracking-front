@@ -17,7 +17,7 @@ const LoginForm = props => {
         <div>Password</div>
         <input type="password" id="password" name="password" autoComplete="current-password" onChange={e => setPassword(e.target.value)} value={password} />
       </label>
-      <input type="submit" value="Login" />
+      <input className="submitButton" type="submit" value="Login" />
     </form>
   );
 };

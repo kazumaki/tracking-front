@@ -15,9 +15,12 @@ const icon7 = require('../images/measurement_type_7.png');
 
 const icons = [icon1, icon2, icon3, icon4, icon5, icon6, icon7];
 
-const MeasurementBox = ({ measurement, measurementType, history }) => {
+const MeasurementBox = ({
+  measurement, measurementType, history, setShowAddMeasurement,
+}) => {
   const handleOnClick = () => {
-    history.push(`/measurements/${measurementType.id}`);
+    if (measurement) { history.push(`/measurements/${measurementType.id}`); }
+    setShowAddMeasurement(true);
   };
 
   return (
@@ -35,6 +38,7 @@ MeasurementBox.defaultProps = {
 MeasurementBox.propTypes = {
   measurement: measurementShape,
   measurementType: measurementTypeShape.isRequired,
+  setShowAddMeasurement: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,

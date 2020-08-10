@@ -18,7 +18,7 @@ const MainPage = () => {
           </div>
           <DateSelector />
         </div>
-        <MeasurementsFilter />
+        <MeasurementsFilter setShowAddMeasurement={setShowAddMeasurement} />
       </div>
     </Root>
   );

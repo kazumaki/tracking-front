@@ -5,10 +5,16 @@ import Measurements from '../components/Measurements';
 import { filterMeasurementByDate } from '../lib/measurement';
 import { measurementTypeShape, measurementShape } from '../lib/propTypeShapes';
 
-const MeasurementsFilter = ({ measurements, dateFilter, measurementTypes }) => {
+const MeasurementsFilter = ({
+  measurements, dateFilter, measurementTypes, setShowAddMeasurement,
+}) => {
   const filteredMeasurements = filterMeasurementByDate(measurements, dateFilter);
   return (
-    <Measurements measurements={filteredMeasurements} measurementTypes={measurementTypes} />
+    <Measurements
+      setShowAddMeasurement={setShowAddMeasurement}
+      measurements={filteredMeasurements}
+      measurementTypes={measurementTypes}
+    />
   );
 };
 
@@ -16,6 +22,7 @@ MeasurementsFilter.propTypes = {
   measurements: PropTypes.objectOf(measurementShape).isRequired,
   dateFilter: PropTypes.instanceOf(Date).isRequired,
   measurementTypes: PropTypes.objectOf(measurementTypeShape).isRequired,
+  setShowAddMeasurement: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
