@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import MeasurementListDisplay from '../components/MeasurementListDisplay';
 import { filterMeasurementByType } from '../lib/measurement';
 import Root from '../components/Root';
+import { measurementShape, measurementTypeShape } from '../lib/propTypeShapes';
 
 const MeasurementList = props => {
   const { measurements, measurementTypes, measurementTypeId } = props;
@@ -21,8 +22,8 @@ const MeasurementList = props => {
 };
 
 MeasurementList.propTypes = {
-  measurements: PropTypes.objectOf(PropTypes.any).isRequired,
-  measurementTypes: PropTypes.objectOf(PropTypes.any).isRequired,
+  measurements: PropTypes.objectOf(measurementShape).isRequired,
+  measurementTypes: PropTypes.objectOf(measurementTypeShape).isRequired,
   measurementTypeId: PropTypes.string.isRequired,
 };
 

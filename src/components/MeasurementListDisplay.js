@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import MeasurementListBox from '../containers/MeasurementListBox';
 import styles from '../styles/MeasurementListDisplay.module.scss';
-import { measurementTypeShape } from '../lib/propTypeShapes';
+import { measurementTypeShape, measurementShape } from '../lib/propTypeShapes';
 
 const MeasurementListDisplay = ({ measurements, measurementType, history }) => {
   const measurementKeys = Object.keys(measurements).reverse();
@@ -48,7 +48,7 @@ const MeasurementListDisplay = ({ measurements, measurementType, history }) => {
 };
 
 MeasurementListDisplay.propTypes = {
-  measurements: PropTypes.objectOf(PropTypes.any).isRequired,
+  measurements: PropTypes.objectOf(measurementShape).isRequired,
   measurementType: measurementTypeShape.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from '../styles/Measurements.module.scss';
 import MeasurementBox from './MeasurementBox';
+import { measurementTypeShape, measurementShape } from '../lib/propTypeShapes';
 
 const Measurements = ({ measurementTypes, measurements }) => (
   <div className={styles.mainContainer}>
@@ -20,8 +21,8 @@ const Measurements = ({ measurementTypes, measurements }) => (
 );
 
 Measurements.propTypes = {
-  measurementTypes: PropTypes.objectOf(PropTypes.any).isRequired,
-  measurements: PropTypes.objectOf(PropTypes.any).isRequired,
+  measurementTypes: PropTypes.objectOf(measurementTypeShape).isRequired,
+  measurements: PropTypes.objectOf(measurementShape).isRequired,
 };
 
 export default Measurements;

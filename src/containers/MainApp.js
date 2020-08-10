@@ -6,6 +6,7 @@ import getMeasurementTypes from '../store/actions/measurementTypeActions';
 import Root from '../components/Root';
 import MainPage from './MainPage';
 import MeasurementList from './MeasurementList';
+import { measurementTypeShape } from '../lib/propTypeShapes';
 
 const MainApp = props => {
   const {
@@ -34,7 +35,7 @@ const MainApp = props => {
 };
 
 MainApp.propTypes = {
-  measurementTypes: PropTypes.objectOf(PropTypes.any).isRequired,
+  measurementTypes: PropTypes.objectOf(measurementTypeShape).isRequired,
   getMeasurementTypes: PropTypes.func.isRequired,
   fetchMeasurements: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired,

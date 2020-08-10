@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from '../styles/MeasurementForm.module.scss';
+import { measurementTypeShape } from '../lib/propTypeShapes';
 
 const MeasurementForm = props => {
   const {
@@ -12,6 +13,9 @@ const MeasurementForm = props => {
     measurementTypes,
     onClickCloseButton,
   } = props;
+
+  console.log(measurementTypes);
+
   return (
     <div className={styles.outterBox}>
       <div className={styles.innerBox}>
@@ -53,7 +57,7 @@ MeasurementForm.propTypes = {
   value: PropTypes.number.isRequired,
   measurementType: PropTypes.number.isRequired,
   measurementTypes: PropTypes.objectOf(
-    PropTypes.any,
+    measurementTypeShape.isRequired,
   ).isRequired,
   onClickCloseButton: PropTypes.func.isRequired,
 };

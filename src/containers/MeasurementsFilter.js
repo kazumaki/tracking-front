@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Measurements from '../components/Measurements';
 import { filterMeasurementByDate } from '../lib/measurement';
+import { measurementTypeShape, measurementShape } from '../lib/propTypeShapes';
 
 const MeasurementsFilter = ({ measurements, dateFilter, measurementTypes }) => {
   const filteredMeasurements = filterMeasurementByDate(measurements, dateFilter);
@@ -12,9 +13,9 @@ const MeasurementsFilter = ({ measurements, dateFilter, measurementTypes }) => {
 };
 
 MeasurementsFilter.propTypes = {
-  measurements: PropTypes.objectOf(PropTypes.any).isRequired,
+  measurements: PropTypes.objectOf(measurementShape).isRequired,
   dateFilter: PropTypes.instanceOf(Date).isRequired,
-  measurementTypes: PropTypes.objectOf(PropTypes.any).isRequired,
+  measurementTypes: PropTypes.objectOf(measurementTypeShape).isRequired,
 };
 
 const mapStateToProps = state => ({
