@@ -11,7 +11,7 @@ const Header = ({ token, setToken }) => {
 
   return (
     <header className={styles.header}>
-      <div className={styles.title}>Tracking</div>
+      <h2 className={styles.title}>Tracking</h2>
       {token && <button type="button" onClick={handleLogoutClick} onKeyDown={handleLogoutClick} className={styles.logoutButton}>Logout</button>}
     </header>
   );

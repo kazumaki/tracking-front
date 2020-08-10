@@ -33,7 +33,7 @@ const MeasurementListDisplay = ({ measurements, measurementType, history }) => {
           currentDate = currentMeasurement.created_at.toDateString();
           return (
             <div key={key}>
-              <div className={styles.date}>{currentDate}</div>
+              <time className={styles.date}>{currentDate}</time>
               {renderComponent}
             </div>
           );
