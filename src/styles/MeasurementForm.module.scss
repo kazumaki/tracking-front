@@ -1,0 +1,28 @@
+.outterBox {
+  width: 100vw;
+  max-width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.innerBox {
+  background-color: white;
+  border: solid 1px #cbd6ddaa;
+}
+
+.closeButton {
+  cursor: pointer;
+}
+
+form {
+  select {
+    width: 100%;
+  }
+}

@@ -1,0 +1,29 @@
+.header {
+  background-color: #62b5e5;
+  color: white;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  max-width: 100%;
+  height: 50px;
+  position: fixed;
+  top: 0;
+}
+
+.title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.logoutButton {
+  margin-left: auto;
+  margin-right: 5px;
+  background-color: transparent;
+  border: none;
+  border: solid 1px #cbd6ddaa;
+  font-weight: bold;
+  color: white;
+  padding: 8px;
+  cursor: pointer;
+}
